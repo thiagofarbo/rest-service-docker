@@ -1,0 +1,9 @@
+#comando para criar a imagem docker
+docker build -f Dockerfile -t docker-spring-boot .
+
+docker images
+docker run -p 8085:8085 docker-spring-boot
+
+
+
+font: https://www.youtube.com/watch?v=FlSup_eelYE&t=1133s
