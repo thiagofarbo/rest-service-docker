@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/docker")
+@RequestMapping("/api")
 public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/customers")
+	@GetMapping("/customer")
 	@ResponseBody
 	public List<Customer> getCustomer() {
 
