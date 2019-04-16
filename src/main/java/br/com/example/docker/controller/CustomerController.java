@@ -20,7 +20,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/customer")
+	@GetMapping("/customers")
 	@ResponseBody
 	public List<Customer> getCustomer() {
 
