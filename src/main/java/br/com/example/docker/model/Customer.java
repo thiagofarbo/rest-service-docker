@@ -43,4 +43,8 @@ public class Customer implements Serializable{
 	@Column(name = "phone")
 	private String phone;
 	
+	public Customer(Long id, String name,String phone) {
+		
+	}
+	
 }	
