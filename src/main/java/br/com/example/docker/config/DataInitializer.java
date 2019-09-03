@@ -21,7 +21,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 		
 		List<Customer> customers = this.customerRepository.findAll();
 		
-		if(!customers.isEmpty()) {
+		if(customers.isEmpty()) {
 			this.buildCustomer(1L, "Thiago", "Av. Brg. Faria Lima, 3477 - Itaim Bibi, São Paulo");
 		}
 		

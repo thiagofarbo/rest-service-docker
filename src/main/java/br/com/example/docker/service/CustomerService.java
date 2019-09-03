@@ -5,13 +5,13 @@
 
 package br.com.example.docker.service;
 
-import java.util.List;
-
-import br.com.example.docker.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import br.com.example.docker.model.Customer;
+import br.com.example.docker.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
@@ -19,8 +19,8 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	public List<Customer> getAllCustomers(){
+	public Page<Customer> getAllCustomers(final int page, final int size){
 
-		return this.customerRepository.findAll();
+		return this.customerRepository.findAll(PageRequest.of(page, size));
 	}
 }

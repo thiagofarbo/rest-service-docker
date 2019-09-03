@@ -4,14 +4,16 @@
 
 package br.com.example.docker.controller;
 
-import java.util.List;
-import br.com.example.docker.model.Customer;
-import br.com.example.docker.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.example.docker.model.Customer;
+import br.com.example.docker.service.CustomerService;
 
 @RestController
 @RequestMapping("/api")
@@ -22,8 +24,9 @@ public class CustomerController {
 
 	@GetMapping("/customers")
 	@ResponseBody
-	public List<Customer> getCustomer() {
+	public Page<Customer> getCustomer(@RequestParam(defaultValue = "0") final int page, @RequestParam(defaultValue = "50") final int size) {
 
-		return this.customerService.getAllCustomers();
+		
+		return this.customerService.getAllCustomers(page, size);
 	}
 }
