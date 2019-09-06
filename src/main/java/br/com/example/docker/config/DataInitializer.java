@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -24,14 +24,14 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
 	
 
-	@Autowired
-	public DataInitializer(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
+//	@Autowired
+//	public DataInitializer(PasswordEncoder passwordEncoder) {
+//		this.passwordEncoder = passwordEncoder;
+//	}
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -39,7 +39,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 		List<Customer> customers = this.customerRepository.findAll();
 		
 		if(customers.isEmpty()) {
-			this.buildCustomer("Av. Brg. Faria Lima, 3477 - Itaim Bibi, São Paulo", "thiagofarbo@gmail.com", "Thiago", passwordEncoder.encode("@123456"), "119099877", "ROLE_ADMIN");
+			this.buildCustomer("Av. Brg. Faria Lima, 3477 - Itaim Bibi, São Paulo", "thiagofarbo@gmail.com", "Thiago", "@123456"/*passwordEncoder.encode("@123456")*/, "119099877", "ROLE_ADMIN");
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
 		Roles roles = new Roles();
 		roles.setName(role);
 		
-		this.roleRepository.save(roles);
+//		this.roleRepository.save(roles);
 		
 		Customer customer = new Customer(name, email, password, adrress, phone,  Arrays.asList(roles));
 		
