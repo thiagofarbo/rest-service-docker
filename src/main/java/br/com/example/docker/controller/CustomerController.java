@@ -25,10 +25,29 @@ public class CustomerController {
 
 	@ResponseBody
 //	@Secured({"ROLE_ADMIN"})
-	@GetMapping("/customers")
+	@GetMapping("/v1/customers")
 	public Page<Customer> getCustomer(@RequestParam(defaultValue = "0") final int page, @RequestParam(defaultValue = "50") final int size) {
-
-		
+		return this.customerService.getAllCustomers(page, size);
+	}
+	
+	@ResponseBody
+//	@Secured({"ROLE_ADMIN"})
+	@GetMapping("/v2/customers")
+	public Page<Customer> getCustomerV2(@RequestParam(defaultValue = "0") final int page, @RequestParam(defaultValue = "50") final int size) {
+		return this.customerService.getAllCustomers(page, size);
+	}
+	
+	@ResponseBody
+//	@Secured({"ROLE_ADMIN"})
+	@GetMapping(value = "/customers", headers = "X-API-Version=v1")
+	public Page<Customer> getCustomerHeaderV1(@RequestParam(defaultValue = "0") final int page, @RequestParam(defaultValue = "50") final int size) {
+		return this.customerService.getAllCustomers(page, size);
+	}
+	
+	@ResponseBody
+//	@Secured({"ROLE_ADMIN"})
+	@GetMapping(value = "/customers", headers = "X-API-Version=v2")
+	public Page<Customer> getCustomerHeaderV2(@RequestParam(defaultValue = "0") final int page, @RequestParam(defaultValue = "50") final int size) {
 		return this.customerService.getAllCustomers(page, size);
 	}
 }
