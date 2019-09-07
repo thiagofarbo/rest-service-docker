@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import br.com.example.docker.enums.ProfileEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,17 +61,25 @@ public class Customer implements Serializable{
 	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Roles> roles;
 	
+	private ProfileEnum profile;
+	
 	public Customer(Customer customer) {
 		super();
 		this.name = customer.getName();
 		this.email = customer.getEmail();
 		this.adrress =  customer.getAdrress();
 		this.phone = customer.getPhone();
-		this.roles = customer.getRoles();
+//		this.roles = customer.getRoles();
 		this.password = customer.getPassword();
 	}
 	
-	
+	public Customer(Long id, String name, String email, String password, String adrress, String phone) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.adrress = adrress;
+		this.phone = phone;
+	}
 	
 	public Customer(String name, String email, String password, String adrress, String phone, List<Roles> roles) {
 		this.name = name;

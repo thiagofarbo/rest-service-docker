@@ -5,6 +5,8 @@
 
 package br.com.example.docker.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,5 +24,9 @@ public class CustomerService {
 	public Page<Customer> getAllCustomers(final int page, final int size){
 
 		return this.customerRepository.findAll(PageRequest.of(page, size));
+	}
+	
+	public Optional<Customer> getCustomerByEmail(final String email) {
+		return Optional.ofNullable(this.customerRepository.findByEmail(email));
 	}
 }

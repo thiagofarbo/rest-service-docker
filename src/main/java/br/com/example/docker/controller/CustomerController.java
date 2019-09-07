@@ -6,6 +6,7 @@ package br.com.example.docker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import br.com.example.docker.service.CustomerService;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class CustomerController {
 
 	@Autowired
