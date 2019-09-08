@@ -1,5 +1,7 @@
 package br.com.example.docker.jwt.utils;
 
+import static java.util.Objects.isNull;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class PasswordUtils {
@@ -10,10 +12,10 @@ public class PasswordUtils {
 	 * @param password
 	 * @return String
 	 */
-	public static String gerarBCrypt(String password) {
-		if (password == null) {
-			return password;
-		}
+	public static String generateBCrypt(String password) {
+		 if(isNull(password)) {
+			 return password;
+		 }
 
 		BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
 		return bCryptEncoder.encode(password);
@@ -26,7 +28,7 @@ public class PasswordUtils {
 	 * @param passwordEncoded
 	 * @return boolean
 	 */
-	public static boolean senhaValida(String password, String passwordEncoded) {
+	public static boolean isValidPassword(String password, String passwordEncoded) {
 		BCryptPasswordEncoder bCryptEncoder = new BCryptPasswordEncoder();
 		return bCryptEncoder.matches(password, passwordEncoded);
 	}

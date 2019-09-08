@@ -13,7 +13,7 @@ import br.com.example.docker.model.Customer;
 import br.com.example.docker.repository.CustomerRepository;
 
 @SpringBootApplication
-@ComponentScan("br.com.example.docker.controller.AuthenticationController")
+//@ComponentScan("br.com.example.docker.controller.AuthenticationController")
 public class DemoDockerSpringBootApplication {
 
 	public static void main(String[] args) {
@@ -28,15 +28,15 @@ public class DemoDockerSpringBootApplication {
 		return args -> {
 			
 			Customer customerUser = new Customer();
-			customerUser.setEmail("usuario@email.com");
+			customerUser.setEmail("thiagofarbo@gmail.com");
 			customerUser.setProfile(ProfileEnum.ROLE_USER);
-			customerUser.setPassword(PasswordUtils.gerarBCrypt("123456"));
+			customerUser.setPassword(PasswordUtils.generateBCrypt("@123456"));
 			this.customerRepository.save(customerUser);
 			
 			Customer customerAdmin = new Customer();
-			customerAdmin.setEmail("admin@email.com");
+			customerAdmin.setEmail("thiagofarbo@gmail.com");
 			customerAdmin.setProfile(ProfileEnum.ROLE_ADMIN);
-			customerAdmin.setPassword(PasswordUtils.gerarBCrypt("123456"));
+			customerAdmin.setPassword(PasswordUtils.generateBCrypt("@123456"));
 			this.customerRepository.save(customerAdmin);
 			
 		};

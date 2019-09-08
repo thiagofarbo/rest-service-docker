@@ -23,4 +23,9 @@ public class JwtAuthenticationDto {
 	@NotEmpty(message = "Password must not be empty")
 	private String password;
 	
+	@Override
+	public String toString() {
+		return "JwtAuthenticationRequestDto [email=" + email + ", password=" + password + "]";
+	}
+	
 }

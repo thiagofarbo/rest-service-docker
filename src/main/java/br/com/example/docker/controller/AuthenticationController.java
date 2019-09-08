@@ -53,23 +53,30 @@ public class AuthenticationController {
 
 	@PostMapping
 	public ResponseEntity<Response<TokenDto>> gerarTokenJwt(@Valid @RequestBody JwtAuthenticationDto authenticationDto,
-			BindingResult result) throws AuthenticationException {
+			BindingResult result) {
 		Response<TokenDto> response = new Response<TokenDto>();
 
-		if (result.hasErrors()) {
-			log.error("Error validating request: {}", result.getAllErrors());
-			result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
-			return ResponseEntity.badRequest().body(response);
+		try {
+			
+			if (result.hasErrors()) {
+				log.error("Error validating request: {}", result.getAllErrors());
+				result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
+				return ResponseEntity.badRequest().body(response);
+			}
+			
+			log.info("Generating token to e-mail {}.", authenticationDto.getEmail());
+			Authentication authentication = this.authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(authenticationDto.getEmail(), authenticationDto.getPassword()));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationDto.getEmail());
+			String token = this.jwtTokenUtil.getToken(userDetails);
+			response.setData(new TokenDto(token));
+		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		log.info("Generating token to e-mail {}.", authenticationDto.getEmail());
-		Authentication authentication = this.authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(authenticationDto.getEmail(), authenticationDto.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
-		UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationDto.getEmail());
-		String token = this.jwtTokenUtil.getToken(userDetails);
-		response.setData(new TokenDto(token));
+		
 
 		return ResponseEntity.ok(response);
 	}

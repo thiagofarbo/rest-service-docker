@@ -3,6 +3,8 @@ package br.com.example.docker.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,9 +30,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 	
 	@Autowired
-	private JwtCustomerDetailService jwtCustomerDetailService;
-	
-	@Autowired
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
@@ -38,19 +37,30 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
+	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+	   return super.authenticationManagerBean();
+	}
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
-	
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(jwtCustomerDetailService);
 	}
 	
 	@Bean
 	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
 		return new JwtAuthenticationTokenFilter();
 	}
+	
+//	@Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .inMemoryAuthentication()
+//                .withUser("sa").password("").roles("USER")
+//                .and()
+//                .withUser("sa").password("").roles("USER", "ADMIN");
+//    }
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
