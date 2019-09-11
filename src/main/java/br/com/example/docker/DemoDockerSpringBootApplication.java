@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
 import br.com.example.docker.enums.ProfileEnum;
 import br.com.example.docker.jwt.utils.PasswordUtils;
@@ -28,15 +27,15 @@ public class DemoDockerSpringBootApplication {
 		return args -> {
 			
 			Customer customerUser = new Customer();
-			customerUser.setEmail("thiagofarbo@gmail.com");
+			customerUser.setEmail("usuario@email.com");
 			customerUser.setProfile(ProfileEnum.ROLE_USER);
-			customerUser.setPassword(PasswordUtils.generateBCrypt("@123456"));
+			customerUser.setPassword(PasswordUtils.generateBCrypt("123456"));
 			this.customerRepository.save(customerUser);
 			
 			Customer customerAdmin = new Customer();
-			customerAdmin.setEmail("thiagofarbo@gmail.com");
+			customerAdmin.setEmail("admin@email.com");
 			customerAdmin.setProfile(ProfileEnum.ROLE_ADMIN);
-			customerAdmin.setPassword(PasswordUtils.generateBCrypt("@123456"));
+			customerAdmin.setPassword(PasswordUtils.generateBCrypt("123456"));
 			this.customerRepository.save(customerAdmin);
 			
 		};

@@ -53,15 +53,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		return new JwtAuthenticationTokenFilter();
 	}
 	
-//	@Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("sa").password("").roles("USER")
-//                .and()
-//                .withUser("sa").password("").roles("USER", "ADMIN");
-//    }
-	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
