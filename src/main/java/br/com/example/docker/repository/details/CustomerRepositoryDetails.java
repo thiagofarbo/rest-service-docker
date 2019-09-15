@@ -30,7 +30,7 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return getAuthorities();
+		return authorities;
 	}
 
 	@Override
@@ -60,6 +60,6 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 	
 	@Override
 	public String getPassword() {
-		return super.getPassword();
+		return password;
 	}
 }
