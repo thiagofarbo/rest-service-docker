@@ -11,31 +11,25 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 	
 	private static final long serialVersionUID = -1432837033555655087L;
 	
-    private Long id;
-	private String email;
+	private Long id;
+	private String username;
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
-	
-	
-	public CustomerRepositoryDetails(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+
+	public CustomerRepositoryDetails(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
-		this.email = email;
+		this.username = username;
 		this.password = password;
 		this.authorities = authorities;
 	}
-	
-	public CustomerRepositoryDetails(Customer customer) {
-		super(customer);
-	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+	public Long getId() {
+		return id;
 	}
 
 	@Override
 	public String getUsername() {
-		return this.getEmail();
+		return username;
 	}
 
 	@Override
@@ -54,12 +48,17 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 	}
 
 	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-	
-	@Override
 	public String getPassword() {
 		return password;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }
