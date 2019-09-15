@@ -16,10 +16,10 @@ public class JwtCustomerFactory {
 	}
 
 	/**
-	 * Converte e gera um JwtUser com base nos dados de um funcionário.
+	 * Convert and genarate a JwtCustomerRepositoryDetails based on datas of a customer.
 	 * 
-	 * @param funcionario
-	 * @return JwtUser
+	 * @param customer
+	 * @return CustomerRepositoryDetails
 	 */
 	public static CustomerRepositoryDetails create(Customer customer) {
 		return new CustomerRepositoryDetails(customer.getId(), customer.getEmail(), customer.getPassword(),
@@ -27,9 +27,9 @@ public class JwtCustomerFactory {
 	}
 
 	/**	
-	 * Converte o perfil do usuário para o formato utilizado pelo Spring Security.
+	 * Convert the  profile of the user to the format used by Spring Security.
 	 * 
-	 * @param perfilEnum
+	 * @param profileEnum
 	 * @return List<GrantedAuthority>
 	 */
 	private static List<GrantedAuthority> mapToGrantedAuthorities(ProfileEnum profileEnum) {

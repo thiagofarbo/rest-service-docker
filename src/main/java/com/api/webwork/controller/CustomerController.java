@@ -6,6 +6,7 @@ package com.api.webwork.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;

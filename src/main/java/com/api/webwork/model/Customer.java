@@ -6,17 +6,12 @@
 package com.api.webwork.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 import com.api.webwork.enums.ProfileEnum;
 
@@ -50,8 +45,8 @@ public class Customer implements Serializable{
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "adrress")
-	private String adrress;
+	@Column(name = "address")
+	private String address;
 	
 	@Column(name = "phone")
 	private String phone;
@@ -68,17 +63,17 @@ public class Customer implements Serializable{
 		super();
 		this.name = customer.getName();
 		this.email = customer.getEmail();
-		this.adrress =  customer.getAdrress();
+		this.address =  customer.getAddress();
 		this.phone = customer.getPhone();
 //		this.roles = customer.getRoles();
 		this.password = customer.getPassword();
 	}
 	
-	public Customer(Long id, String name, String email, String password, String adrress, String phone) {
+	public Customer(Long id, String name, String email, String password, String address, String phone) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.adrress = adrress;
+		this.address = address;
 		this.phone = phone;
 	}
 	
@@ -86,7 +81,7 @@ public class Customer implements Serializable{
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.adrress = adrress;
+		this.address = adrress;
 		this.phone = phone;
 //		this.roles = roles;
 	}

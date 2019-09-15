@@ -51,12 +51,10 @@ public class AuthenticationController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Response<TokenDto>> gerarTokenJwt(@Valid @RequestBody JwtAuthenticationDto authenticationDto,
+	public ResponseEntity<Response<TokenDto>> gerarToken(@Valid @RequestBody JwtAuthenticationDto authenticationDto,
 			BindingResult result) {
-		Response<TokenDto> response = new Response<TokenDto>();
+		Response<TokenDto> response = new Response<>();
 
-		try {
-			
 			if (result.hasErrors()) {
 				log.error("Error validating request: {}", result.getAllErrors());
 				result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
@@ -71,19 +69,14 @@ public class AuthenticationController {
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationDto.getEmail());
 			String token = this.jwtTokenUtil.getToken(userDetails);
 			response.setData(new TokenDto(token));
-		
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 
 		return ResponseEntity.ok(response);
 	}
 
 	@PostMapping(value = "/refresh")
-	public ResponseEntity<Response<TokenDto>> gerarRefreshTokenJwt(HttpServletRequest request) {
-		log.info("Generating token token JWT.");
-		Response<TokenDto> response = new Response<TokenDto>();
+	public ResponseEntity<Response<TokenDto>> gerarRefreshToken(HttpServletRequest request) {
+		log.info("Generating token token.");
+		Response<TokenDto> response = new Response<>();
 		Optional<String> token = Optional.ofNullable(request.getHeader(TOKEN_HEADER));
 
 		if (token.isPresent() && token.get().startsWith(BEARER_PREFIX)) {

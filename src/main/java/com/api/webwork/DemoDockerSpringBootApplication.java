@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 import com.api.webwork.enums.ProfileEnum;
@@ -11,8 +12,8 @@ import com.api.webwork.model.Customer;
 import com.api.webwork.repository.CustomerRepository;
 import com.api.webwork.security.utils.PasswordUtils;
 
+@EnableCaching
 @SpringBootApplication
-//@ComponentScan("br.com.example.docker.controller.AuthenticationController")
 public class DemoDockerSpringBootApplication {
 
 	public static void main(String[] args) {
@@ -21,6 +22,7 @@ public class DemoDockerSpringBootApplication {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
 	
 	@Bean
 	public CommandLineRunner commandLineRunner() {
