@@ -1,8 +1,16 @@
 package com.api.webwork;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
+
+import com.api.webwork.enums.ProfileEnum;
+import com.api.webwork.model.Customer;
+import com.api.webwork.repository.CustomerRepository;
+import com.api.webwork.security.utils.PasswordUtils;
 
 @EnableCaching
 @SpringBootApplication
@@ -12,47 +20,47 @@ public class DemoDockerSpringBootApplication {
 		SpringApplication.run(DemoDockerSpringBootApplication.class, args);
 	}
 	
-//	@Autowired
-//	private CustomerRepository customerRepository;
-//	
-//	
-//	@Bean
-//	public CommandLineRunner commandLineRunner() {
-//		return args -> {
-//			
-//			Customer customerUser = new Customer();
-//			customerUser.setEmail("usuario@email.com");
-//			customerUser.setProfile(ProfileEnum.ROLE_USER);
-//			customerUser.setPassword(PasswordUtils.generateBCrypt("123456"));
-//			
-//			Customer customer = customerRepository.findByEmail(customerUser.getEmail());
-//			
-//			if(customer == null) {
-//				
-//				this.customerRepository.save(customerUser);
-//			}
-//			System.out.println("Finding customer by email");
-//			System.out.println(customerRepository.findByEmail("usuario@email.com"));
-//			
-//			
-//			Customer customerAdmin = new Customer();
-//			customerAdmin.setEmail("admin@email.com");
-//			customerAdmin.setProfile(ProfileEnum.ROLE_ADMIN);
-//			customerAdmin.setPassword(PasswordUtils.generateBCrypt("123456"));
-//			
-//			Customer customer2 = customerRepository.findByEmail(customerAdmin.getEmail());
-//			
-//			if(customer2 == null) {
-//				
-//				this.customerRepository.save(customerAdmin);
-//			}
-//			
-//			
-//			customerRepository.findAll().forEach(System.out::println);
-//			
-//			System.out.println("Finding customer by email");
-//			System.out.println(customerRepository.findByEmail("admin@email.com"));
-//			
-//		};
-//	}
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	
+	@Bean
+	public CommandLineRunner commandLineRunner() {
+		return args -> {
+			
+			Customer customerUser = new Customer();
+			customerUser.setEmail("usuario@email.com");
+			customerUser.setProfile(ProfileEnum.ROLE_USER);
+			customerUser.setPassword(PasswordUtils.generateBCrypt("123456"));
+			
+			Customer customer = customerRepository.findByEmail(customerUser.getEmail());
+			
+			if(customer == null) {
+				
+				this.customerRepository.save(customerUser);
+			}
+			System.out.println("Finding customer by email");
+			System.out.println(customerRepository.findByEmail("usuario@email.com"));
+			
+			
+			Customer customerAdmin = new Customer();
+			customerAdmin.setEmail("admin@email.com");
+			customerAdmin.setProfile(ProfileEnum.ROLE_ADMIN);
+			customerAdmin.setPassword(PasswordUtils.generateBCrypt("123456"));
+			
+			Customer customer2 = customerRepository.findByEmail(customerAdmin.getEmail());
+			
+			if(customer2 == null) {
+				
+				this.customerRepository.save(customerAdmin);
+			}
+			
+			
+			customerRepository.findAll().forEach(System.out::println);
+			
+			System.out.println("Finding customer by email");
+			System.out.println(customerRepository.findByEmail("admin@email.com"));
+			
+		};
+	}
 }
