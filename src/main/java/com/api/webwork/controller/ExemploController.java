@@ -15,7 +15,7 @@ public class ExemploController {
 	@GetMapping(value = "/{nome}")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	public String exemplo(@PathVariable("nome") String nome) {
-		return "Olá " + nome;
+		return "Hey " + nome;
 	}
 	
 }
