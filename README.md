@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thiagofarbo/rest-service-docker.svg?branch=master)](https://travis-ci.org/thiagofarbo/rest-service-docker)
+
 #Commad to create a docker image.
 docker build -f Dockerfile -t demo-docker-spring-boot .
 
