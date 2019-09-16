@@ -32,13 +32,34 @@ public class DemoDockerSpringBootApplication {
 			customerUser.setEmail("usuario@email.com");
 			customerUser.setProfile(ProfileEnum.ROLE_USER);
 			customerUser.setPassword(PasswordUtils.generateBCrypt("123456"));
-			this.customerRepository.save(customerUser);
+			
+			Customer customer = customerRepository.findByEmail(customerUser.getEmail());
+			
+			if(customer == null) {
+				
+				this.customerRepository.save(customerUser);
+			}
+			System.out.println("Finding customer by email");
+			System.out.println(customerRepository.findByEmail("usuario@email.com"));
+			
 			
 			Customer customerAdmin = new Customer();
 			customerAdmin.setEmail("admin@email.com");
 			customerAdmin.setProfile(ProfileEnum.ROLE_ADMIN);
 			customerAdmin.setPassword(PasswordUtils.generateBCrypt("123456"));
-			this.customerRepository.save(customerAdmin);
+			
+			Customer customer2 = customerRepository.findByEmail(customerAdmin.getEmail());
+			
+			if(customer2 == null) {
+				
+				this.customerRepository.save(customerAdmin);
+			}
+			
+			
+			customerRepository.findAll().forEach(System.out::println);
+			
+			System.out.println("Finding customer by email");
+			System.out.println(customerRepository.findByEmail("admin@email.com"));
 			
 		};
 	}

@@ -11,20 +11,14 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 	
 	private static final long serialVersionUID = -1432837033555655087L;
 	
-	private Long id;
 	private String username;
-	private String password;
+	private String passwordCustomerDetail;
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public CustomerRepositoryDetails(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		this.id = id;
+	public CustomerRepositoryDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		this.username = username;
-		this.password = password;
+		this.passwordCustomerDetail = password;
 		this.authorities = authorities;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	@Override
@@ -49,7 +43,7 @@ public class CustomerRepositoryDetails extends Customer implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		return password;
+		return passwordCustomerDetail;
 	}
 
 	@Override

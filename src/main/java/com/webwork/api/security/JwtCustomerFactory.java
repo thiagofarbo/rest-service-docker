@@ -22,7 +22,7 @@ public class JwtCustomerFactory {
 	 * @return CustomerRepositoryDetails
 	 */
 	public static CustomerRepositoryDetails create(Customer customer) {
-		return new CustomerRepositoryDetails(customer.getId(), customer.getEmail(), customer.getPassword(),
+		return new CustomerRepositoryDetails(/*customer.getId(),*/ customer.getEmail(), customer.getPassword(),
 				mapToGrantedAuthorities(customer.getProfile()));
 	}
 

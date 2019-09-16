@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.api.webwork.model.Customer;
 import com.api.webwork.service.CustomerService;
+import com.webwork.api.security.JwtCustomerFactory;
 
 @Service
 public class JwtCustomerDetailService implements UserDetailsService{
